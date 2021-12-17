@@ -1,0 +1,2 @@
+token = 'e443f4842092cf2e244c2c378333fa2d'
+tg_token = "5035936249:AAEmaTSfglN9VBvA-RJoxTvUZktsPSZYB5I"

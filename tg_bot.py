@@ -13,7 +13,11 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=["start"])
 async def start1(message: types.Message):
-    """функция отправляет пользователю приветственное сообщение"""
+    """
+    функция отправляет пользователю приветственное сообщение
+    :param message: /start
+    :return: Приветственное сообщение
+    """
     await message.reply("Привет, введите город в котором хотите узнать погоду")
 
 
@@ -22,6 +26,8 @@ async def help1(message: types.Message):
     """
     функция которая вызывается командой /help,
     описание возможных ошибок пользователя
+    :param message: /help
+    :return: подсказки и возможные ошибки пользователя
     """
 
     await message.answer("***После начала работы бота введите название города,"
@@ -37,6 +43,8 @@ async def weather1(message: types.Message):
     функция принимает на вход сообщение из телеграма с названием
     города в котором пользователь хочет узнать погоду, и выдаёт
     основные данные о погоде на данный момент
+    :param message: сообщение в лс бота
+    :return: погода на данный момент
     """
     try:
         # заимствованная часть проекта vvvv
@@ -99,6 +107,10 @@ async def weather1(message: types.Message):
                             f"Закат солнца: {sunset}\nПродолжительность светового дня: {len_day}")
 
     except KeyError:
+        """
+        try и except если не возникает 
+        ошибок KeyError выводится вывод try
+        """
         await message.reply("Проверьте правильность введённых данных")
 
 if __name__ == "__main__":

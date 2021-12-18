@@ -14,7 +14,7 @@ class Test1(unittest.TestCase):
         self.assertNotEqual((weather("краснодар", token)), "Проверьте правильность введённых данных")
 
     def test5(self):
-        self.assertIn(weather("масква", token), "Проверьте правильность введённых данных")
+        self.assertIn(weather("ошибка", token), "Проверьте правильность введённых данных")
 
     def test6(self):
         self.assertNotEqual(weather("MOSCOW", token), "Проверьте правильность введённых данных")

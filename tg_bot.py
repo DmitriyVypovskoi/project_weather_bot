@@ -47,13 +47,13 @@ async def weather1(message: types.Message):
     :return: погода на данный момент
     """
     try:
-        # заимствованная часть проекта vvvv
+        """Начало заимствования"""
         r = requests.get(
             f"http://api.openweathermap.org/data/2.5/weather?q={message.text}&appid={token}&units=metric"
         )
 
         data = r.json()
-        # заимствованная часть проекта ^^^^
+        """Конец заимствования"""
 
         weather = data["weather"][0]["main"]
 

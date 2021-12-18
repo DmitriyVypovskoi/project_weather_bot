@@ -1,10 +1,10 @@
-import requests
-import datetime
 from config import tg_token
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
 from config import token
+import requests
+import datetime
 
 
 bot = Bot(token=tg_token)
@@ -12,13 +12,17 @@ dp = Dispatcher(bot)
 
 
 @dp.message_handler(commands=["start"])
-async def start1(message: types.Message): # функция отправляет пользователю приветственное сообщение
+async def start1(message: types.Message):
+    """функция отправляет пользователю приветственное сообщение"""
     await message.reply("Привет, введите город в котором хотите узнать погоду")
 
 
 @dp.message_handler(commands=["help"])
-async def help1(message: types.Message): # функция которая вызывается командой /help,
-                                         # описание возможных ошибок пользователя
+async def help1(message: types.Message):
+    """
+    функция которая вызывается командой /help,
+    описание возможных ошибок пользователя
+    """
 
     await message.answer("***После начала работы бота введите название города,"
                          " в котором вы хотите узнать состояние погоды на данный момент.\n"
@@ -28,9 +32,13 @@ async def help1(message: types.Message): # функция которая выз�
 
 
 @dp.message_handler()
-async def weather1(message: types.Message):  # функция принимает на вход сообщение из телеграма с названием
-                                             # города в котором пользователь хочет узнать погоду, и выдаёт
-    try:                                     # основные данные о погоде на данный момент
+async def weather1(message: types.Message):
+    """
+    функция принимает на вход сообщение из телеграма с названием
+    города в котором пользователь хочет узнать погоду, и выдаёт
+    основные данные о погоде на данный момент
+    """
+    try:
         # заимствованная часть проекта vvvv
         r = requests.get(
             f"http://api.openweathermap.org/data/2.5/weather?q={message.text}&appid={token}&units=metric"
@@ -81,6 +89,8 @@ async def weather1(message: types.Message):  # функция принимает
         sunset = datetime.datetime.fromtimestamp(data["sys"]["sunset"])
         len_day = sunset - sunrise
         country = data["sys"]["country"]
+
+        """Берём основные сведения о погоде из вывода .json"""
 
         await message.reply(f"Погода в городе: {place}\nCтрана: {country}\n{weather}\nТемпература: {int(temp)}С°\n"
                             f"Ощущается как: {int(feels_like)}С°\n"

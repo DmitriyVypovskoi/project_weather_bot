@@ -1,4 +1,3 @@
-aiogram
-requests
-datetime
-
+aiogram = 2.17.1.
+requests = 2.0.7
+datetime = 5.4.0
